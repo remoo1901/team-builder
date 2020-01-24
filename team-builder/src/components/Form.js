@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const Form = props => {
+const Form = (props) => {
   const [member, setMember] = useState({
-    id: Date.now(),
+   
     name: "",
     email: "",
     role: ""
@@ -14,14 +14,15 @@ const Form = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.addNewMember(member);
+    const newMember = {...member,  id: Date.now() };
+    props.addNewMember(newMember);
     setMember({ name: "", email: "", role: "" });
   };
 
   return (
     <div>
-      <form>
-        <label htmlfor="name">Name</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           id="name"
@@ -31,8 +32,7 @@ const Form = props => {
           required
         />
         <br /> <br />
-
-        <label htmlfor="email">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           type="text"
           id="email"
@@ -42,8 +42,7 @@ const Form = props => {
           required
         />
         <br /> <br />
-
-        <label htmlfor="role">Role</label>
+        <label htmlFor="role">Role</label>
         <input
           type="text"
           id="role"
@@ -53,11 +52,10 @@ const Form = props => {
           required
         />
         <br /> <br />
-
-        <input htmlfor="addMember">add Member</input>
-        <button type="submit" id="addMember" >Submit</button>
+        <button type="submit" id="addMember">
+          Submit
+        </button>
         <br /> <br />
-
       </form>
     </div>
   );

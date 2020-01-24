@@ -5,23 +5,16 @@ import Form from './components/Form'
 import './App.css';
 
 function App() {
-  const [member, setMember] = useState([])
+  const [members, setMember] = useState([])
 
   const addNewMember = ((mem) => {
-    const addNewM = {
-      id: Date.now(),
-      name: mem.name,
-      email: mem.email,
-      role: mem.role
-    }
-    setMember([...member, addNewM]);
-
-  }, [])
+    const newMember = setMember([...members, mem]);
+  })
 
   return (
     <div className="App">
       <header className="App-header">
-        <Card />
+        <Card members={members} />
         <Form  addNewMember={addNewMember}/>
       </header>
     </div>
