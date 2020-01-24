@@ -1,12 +1,12 @@
 import React from "react";
 
 const Card = props => {
-   return (
+  return (
     <div>
       {props.member.map(member => (
         <div key={member.id}>
           <h2>{member.name}</h2>
-          <p>{member.email}</p>
+          <h2>{member.email}</h2>
           <p>{member.role}</p>
         </div>
       ))}
