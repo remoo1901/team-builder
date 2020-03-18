@@ -8,7 +8,7 @@ function App() {
   const [members, setMember] = useState([])
 
   const addNewMember = ((mem) => {
-    const newMember = setMember([...members, mem]);
+    setMember([...members, mem]);
   })
 
   return (

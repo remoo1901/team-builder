@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const Form = (props) => {
+const Form = props => {
   const [member, setMember] = useState({
-   
     name: "",
     email: "",
     role: ""
@@ -14,9 +13,8 @@ const Form = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newMember = {...member,  id: Date.now() };
-    props.addNewMember(newMember);
-    setMember({ name: "", email: "", role: "" });
+
+    props.addNewMember({ ...member, id: Date.now() });
   };
 
   return (
