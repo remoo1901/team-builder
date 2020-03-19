@@ -1,16 +1,18 @@
-import React from "react";
+
+import React from 'react';
+import '../App.css';
 
 const Card = props => {
- 
   return (
-    <div>
-      {props.members.map(x => (
-        <div key={x.id}>
-          <h3>{x.name}</h3>
-          <h3>{x.email}</h3>
-          <h3>{x.role}</h3>
-        </div>
-      ))}
+    <div className="note-list">
+      {props.cards.map(card =>
+      <div className="card" key={card.id}>
+        <h3>{card.name}</h3>
+        <h4>{card.email}</h4>
+        <h4>{card.role}</h4>
+      </div>
+
+      )}
     </div>
   );
 };

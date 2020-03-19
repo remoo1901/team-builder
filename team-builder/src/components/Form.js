@@ -1,62 +1,66 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import '../App.css';
 
-const Form = props => {
-  const [member, setMember] = useState({
-    name: "",
-    email: "",
-    role: ""
-  });
+const Form = (props) => {
+    const [formState, setFormState] = useState({
+        name: "",
+        email: "",
+        role: ""
+    }
+    )
+    const changeHandler = e => {
+        setFormState({ ...formState, [e.target.name]: e.target.value })
+    }
 
-  const handleChanges = e => {
-    setMember({ ...member, [e.target.name]: e.target.value });
-  };
+    const submitHandler = e => {
+        e.preventDefault();
+        props.addMember({
+            ...formState,
+            id: Date.now()
+        })
 
-  const handleSubmit = e => {
-    e.preventDefault();
+        setFormState({
+            name: "",
+        email: "",
+        role: ""
+          });
 
-    props.addNewMember({ ...member, id: Date.now() });
-  };
+    }
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="First and Last Name"
-          name="name"
-          onChange={handleChanges}
-          required
-        />
-        <br /> <br />
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          placeholder="email"
-          name="email"
-          onChange={handleChanges}
-          required
-        />
-        <br /> <br />
-        <label htmlFor="role">Role</label>
-        <input
-          type="text"
-          id="role"
-          placeholder="role"
-          name="role"
-          onChange={handleChanges}
-          required
-        />
-        <br /> <br />
-        <button type="submit" id="addMember">
-          Submit
-        </button>
-        <br /> <br />
-      </form>
-    </div>
-  );
-};
+    return (
+
+        <form onSubmit={submitHandler}>
+            <label className="tag">Name</label>
+            <input
+                name="name"
+                placeholder='full name'
+                value={formState.name}
+                onChange={changeHandler}
+            />
+
+            <label className="tag">Email</label>
+            <input
+                name="email"
+                placeholder='Email'
+                value={formState.email}
+                onChange={changeHandler}
+
+            />
+
+            <label className="tag">Role</label>
+            <input
+                name="role"
+                placeholder='Role'
+                value={formState.role}
+                onChange={changeHandler}
+
+            />
+
+            <button className="submit">Submit</button>
+        </form>
+
+
+    );
+}
 
 export default Form;
